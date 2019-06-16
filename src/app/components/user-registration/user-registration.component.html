@@ -1,0 +1,144 @@
+<div *ngIf="( isNewForm | async); then newForm else submittedForm"></div>
+<ng-template #newForm>
+  <div class="card mx-auto outercard">
+    <div class="card-body">
+      <div *ngIf="isLoading">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="card-title">{{formType}}</h5>
+      <hr>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div fxLayout="row">
+          <div class="form-group" fxFlex="48%">
+            <input type="text" class="form-control form-control-md" formControlName="firstName" placeholder="First Name">
+            <div *ngIf="isFieldInvalid('firstName')" class="error-message">
+              Please enter first name
+            </div>
+          </div>
+          <div fxFlex="4%"></div>
+          <div class="form-group" fxFlex="48%">
+            <input type="text" class="form-control form-control-md" formControlName="lastName" placeholder="Last Name">
+            <div *ngIf="isFieldInvalid('lastName')" class="error-message">
+              Please enter last name
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <div class="form-group" fxFlex="48%">
+            <input type="text" class="form-control form-control-md" formControlName="mobile" placeholder="Mobile Number">
+            <div *ngIf="isFieldInvalid('mobile')" class="error-message">
+              Please enter mobile number
+            </div>
+          </div>
+          <div fxFlex="4%"></div>
+          <div class="form-group" fxFlex="48%">
+            <input type="text" class="form-control form-control-md" formControlName="email" placeholder="Email">
+            <div *ngIf="isFieldInvalid('email')" class="error-message">
+              Please enter email
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <div class="form-group" fxFlex="100%">
+            <input type="text" class="form-control form-control-md google-place-input" google-place (onSelect)="setAddressFromMap($event)"
+              formControlName="searchAddress" placeholder="Search Address">
+
+            <div *ngIf="isFieldInvalid('searchAddress')" class="error-message">
+              Please enter address
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <div class="card innercard" fxFlex="100%">
+            <div class="card-body">
+              <div fxLayout="row" class="narrow">
+                <div class="form-group" fxFlex="23%">
+                  <label>Street Address</label>
+                </div>
+                <div fxFlex="5%"></div>
+                <div class="form-group" fxFlex="20%">
+                  <input type="text" class="form-control form-control-md" formControlName="streetNumber" value={{streetNumber}}
+                    readonly>
+                </div>
+                <div fxFlex="5%"></div>
+                <div class="form-group" fxFlex="47%">
+                  <input type="text" class="form-control form-control-md" formControlName="route" value="{{route}}"
+                    readonly>
+                </div>
+              </div>
+
+              <div fxLayout="row" class="narrow">
+                <div class="form-group" fxFlex="23%">
+                  <label>City</label>
+                </div>
+                <div fxFlex="5%"></div>
+                <div class="form-group" fxFlex="72%">
+                  <input type="text" class="form-control form-control-md" formControlName="city" value="{{city}}"
+                    readonly>
+                </div>
+              </div>
+
+              <div fxLayout="row" class="narrow">
+                <div class="form-group" fxFlex="23%">
+                  <label>State</label>
+                </div>
+                <div fxFlex="5%"></div>
+                <div class="form-group" fxFlex="20%">
+                  <input type="text" class="form-control form-control-md" formControlName="state" value={{state}}
+                    readonly>
+                </div>
+                <div fxFlex="5%"></div>
+                <div class="form-group" fxFlex="10%">
+                  <label>Zipcode</label>
+                </div>
+                <div fxFlex="8%"></div>
+                <div class="form-group" fxFlex="29%">
+                  <input type="text" class="form-control form-control-md" formControlName="zipcode" value={{zipcode}}
+                    readonly>
+                </div>
+              </div>
+
+              <div fxLayout="row" class="narrow">
+                <div class="form-group" fxFlex="23%">
+                  <label>Country</label>
+                </div>
+                <div fxFlex="5%"></div>
+                <div class="form-group" fxFlex="72%">
+                  <input type="text" class="form-control form-control-md" formControlName="country" value="{{country}}"
+                    readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div fxLayout="row">
+          <div class="form-group" fxFlex="100%">
+            <textarea class="form-control" rows="4" formControlName="message" placeholder="Message"></textarea>
+            <div *ngIf="isFieldInvalid('message')" class="error-message">
+              Please enter message
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="!form.valid"  class="btn btn-success">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #submittedForm>
+  <div class="formSubmitted">
+    <div class="card mx-auto" style="width: 21rem; border: 0px;">
+      <div>You have been registered successfully. Please validate your data - <a href={{dataPostedUrl}} class="nav-link">here</a></div>
+    </div>
+  </div>
+</ng-template>

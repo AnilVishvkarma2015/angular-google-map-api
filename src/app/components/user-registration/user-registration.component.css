@@ -1,0 +1,51 @@
+  .outercard {
+    max-width: 800px;
+    height: 600px;
+    margin: 80px auto auto auto;
+    border-radius: 0rem;
+  }
+
+  .innercard {
+    max-width: 400px;
+    height: 160px;
+    margin: -10px auto auto auto;
+    background: ghostwhite;
+    border-radius: 0rem;
+  }
+
+  .innercard .form-control {
+    font-size: 0.7rem;
+    height: calc(1.5rem);
+  }
+
+  label {
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  .card-title {
+    font-family: 'Passion One', cursive;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  button {
+      border-radius: 0px;
+      font-size: 0.8rem;
+  }
+
+  .narrow {
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+
+  .formSubmitted {
+    max-width: 300px;
+    max-height: 250px;
+    margin: 150px auto auto auto;  
+    color: #007E33;
+    text-align: center;
+    font-size: 16px;
+  }
+ 
